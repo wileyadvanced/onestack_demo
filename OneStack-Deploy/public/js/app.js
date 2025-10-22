@@ -12,6 +12,7 @@ class NexusApp {
         this.initMobileNavigation();
         this.initThemeEffects();
         this.initSearch();
+        this.initAnalytics();
     }
 
     setupEventListeners() {
@@ -458,6 +459,78 @@ class NexusApp {
                 ${infoCard}
             </div>
         `;
+
+        // Update analytics after search
+        setTimeout(() => this.fetchAnalytics(), 1000);
+    }
+
+    initAnalytics() {
+        // Fetch analytics immediately
+        this.fetchAnalytics();
+
+        // Update every 5 seconds
+        setInterval(() => this.fetchAnalytics(), 5000);
+    }
+
+    async fetchAnalytics() {
+        try {
+            const response = await fetch('/api/analytics');
+            const data = await response.json();
+
+            this.updateAnalytics(data);
+        } catch (error) {
+            console.error('Failed to fetch analytics:', error);
+        }
+    }
+
+    updateAnalytics(data) {
+        const totalSearchesEl = document.getElementById('totalSearches');
+        const mostPopularEl = document.getElementById('mostPopular');
+        const avgResponseTimeEl = document.getElementById('avgResponseTime');
+
+        if (totalSearchesEl && totalSearchesEl.textContent !== data.totalSearches.toString()) {
+            this.animateValue(totalSearchesEl, parseInt(totalSearchesEl.textContent) || 0, data.totalSearches, 500);
+        }
+
+        if (mostPopularEl) {
+            const newValue = data.mostPopular.length > 25
+                ? data.mostPopular.substring(0, 25) + '...'
+                : data.mostPopular;
+
+            if (mostPopularEl.textContent !== newValue) {
+                mostPopularEl.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => {
+                    mostPopularEl.style.animation = '';
+                }, 500);
+                mostPopularEl.textContent = newValue;
+            }
+        }
+
+        if (avgResponseTimeEl) {
+            const newValue = `${data.avgResponseTime}ms`;
+            if (avgResponseTimeEl.textContent !== newValue) {
+                avgResponseTimeEl.style.animation = 'pulse 0.5s ease';
+                setTimeout(() => {
+                    avgResponseTimeEl.style.animation = '';
+                }, 500);
+                avgResponseTimeEl.textContent = newValue;
+            }
+        }
+    }
+
+    animateValue(element, start, end, duration) {
+        const range = end - start;
+        const increment = range / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                current = end;
+                clearInterval(timer);
+            }
+            element.textContent = Math.round(current);
+        }, 16);
     }
 
     buildInfoCard(item) {
