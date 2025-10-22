@@ -197,29 +197,6 @@ body {
     border-bottom: 2px solid rgba(102, 126, 234, 0.3);
 }
 
-.analytics-close {
-    margin-left: auto;
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 0.25rem;
-    border-radius: 4px;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.analytics-close:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
-}
-
-.analytics-close .material-icons {
-    font-size: 1.25rem;
-}
-
 .analytics-header .material-icons {
     color: #667eea;
     font-size: 1.5rem;

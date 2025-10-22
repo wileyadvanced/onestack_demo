@@ -536,26 +536,18 @@ class NexusApp {
 
     initAnalyticsToggle() {
         const toggleBtn = document.getElementById('analyticsToggle');
-        const closeBtn = document.getElementById('analyticsClose');
         const analyticsCard = document.getElementById('analyticsCard');
-
-        console.log('Analytics toggle init:', { toggleBtn, closeBtn, analyticsCard });
 
         if (toggleBtn && analyticsCard) {
             toggleBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log('Toggle button clicked');
-                analyticsCard.classList.toggle('hidden');
-            });
-        }
-
-        if (closeBtn && analyticsCard) {
-            closeBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Close button clicked');
-                analyticsCard.classList.add('hidden');
+                const isHidden = analyticsCard.classList.contains('hidden');
+                if (isHidden) {
+                    analyticsCard.classList.remove('hidden');
+                } else {
+                    analyticsCard.classList.add('hidden');
+                }
             });
         }
     }
