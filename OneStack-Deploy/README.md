@@ -1,4 +1,4 @@
-# Nexus 2025 - Modern Web Application
+# The Wizard Search App
 
 A cutting-edge Node.js web application featuring Material Design and a futuristic 2025 aesthetic. Built with modern web technologies and design principles.
 
