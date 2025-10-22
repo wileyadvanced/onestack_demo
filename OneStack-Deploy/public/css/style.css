@@ -133,6 +133,39 @@ body {
 }
 
 /* Analytics Card */
+/* Analytics Toggle Button */
+.analytics-toggle {
+    position: fixed;
+    top: 100px;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(102, 126, 234, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 101;
+    transition: var(--transition);
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.analytics-toggle:hover {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.6);
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(102, 126, 234, 0.4);
+}
+
+.analytics-toggle .material-icons {
+    color: #667eea;
+    font-size: 1.75rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
 .analytics-card {
     position: fixed;
     top: 100px;
@@ -146,6 +179,13 @@ body {
     box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
     z-index: 100;
     animation: slideInRight 0.6s ease forwards;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.analytics-card.hidden {
+    opacity: 0;
+    transform: translateX(400px);
+    pointer-events: none;
 }
 
 .analytics-header {
@@ -155,6 +195,29 @@ body {
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.analytics-close {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.analytics-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.analytics-close .material-icons {
+    font-size: 1.25rem;
 }
 
 .analytics-header .material-icons {
@@ -1268,11 +1331,26 @@ body {
         margin-bottom: 1.5rem;
     }
 
+    .analytics-toggle {
+        top: 20px;
+        right: 1.5rem;
+        width: 48px;
+        height: 48px;
+    }
+
+    .analytics-toggle .material-icons {
+        font-size: 1.5rem;
+    }
+
     .analytics-card {
         position: static;
         width: auto;
         max-width: 500px;
         margin: 0 auto 2rem;
+    }
+
+    .analytics-card.hidden {
+        display: none;
     }
 
     .search-container {
@@ -1313,11 +1391,26 @@ body {
         padding: 0 1rem;
     }
 
+    .analytics-toggle {
+        top: 15px;
+        right: 1rem;
+        width: 44px;
+        height: 44px;
+    }
+
+    .analytics-toggle .material-icons {
+        font-size: 1.25rem;
+    }
+
     .analytics-card {
         position: static;
         width: auto;
         margin: 0 1rem 1.5rem;
         padding: 1rem;
+    }
+
+    .analytics-card.hidden {
+        display: none;
     }
 
     .analytics-stats {

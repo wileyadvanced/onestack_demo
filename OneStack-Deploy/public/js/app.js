@@ -13,6 +13,7 @@ class NexusApp {
         this.initThemeEffects();
         this.initSearch();
         this.initAnalytics();
+        this.initAnalyticsToggle();
     }
 
     setupEventListeners() {
@@ -531,6 +532,24 @@ class NexusApp {
             }
             element.textContent = Math.round(current);
         }, 16);
+    }
+
+    initAnalyticsToggle() {
+        const toggleBtn = document.getElementById('analyticsToggle');
+        const closeBtn = document.getElementById('analyticsClose');
+        const analyticsCard = document.getElementById('analyticsCard');
+
+        if (toggleBtn && analyticsCard) {
+            toggleBtn.addEventListener('click', () => {
+                analyticsCard.classList.toggle('hidden');
+            });
+        }
+
+        if (closeBtn && analyticsCard) {
+            closeBtn.addEventListener('click', () => {
+                analyticsCard.classList.add('hidden');
+            });
+        }
     }
 
     buildInfoCard(item) {
