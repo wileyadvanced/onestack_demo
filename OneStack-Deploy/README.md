@@ -1,48 +1,54 @@
-# The Wizard Search App
+# 🧙‍♂️ The Wizard Search
 
-A cutting-edge Node.js web application featuring Material Design and a futuristic 2025 aesthetic. Built with modern web technologies and design principles.
+A magical search engine powered by Google Custom Search with a wizard-themed interface. Built with modern web technologies and a mystical design aesthetic.
 
-## 🚀 Features
+## ✨ Features
 
-- **Modern 2025 Design**: Glassmorphism effects, gradient backgrounds, and futuristic UI elements
-- **Material Design**: Integrated Material Design components and principles
-- **Responsive Layout**: Mobile-first design that works on all devices
-- **Interactive Elements**: Smooth animations, ripple effects, and modern interactions
-- **Express.js Backend**: Lightweight and fast Node.js server
-- **EJS Templates**: Dynamic HTML rendering with embedded JavaScript
+- **Wizard Theme**: Magical floating wizard emoji, animated sparkles, and mystical effects
+- **Google Custom Search Integration**: Real-time search powered by Google's API
+- **Wizard's Knowledge Card**: Smart info panel for business/organization results with contact info
+- **Image Thumbnails**: Search results display with magical sparkle animations
+- **Glassmorphism Design**: Modern glass effects with purple gradient theme
+- **Responsive Layout**: Works perfectly on desktop, tablet, and mobile devices
+- **Smart Data Detection**: Automatically shows business info when available
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Node.js, Express.js
+- **Backend**: Node.js, Express.js, Axios
+- **API**: Google Custom Search API
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Styling**: Modern CSS with CSS Grid, Flexbox, and CSS Variables
+- **Styling**: Modern CSS with CSS Grid, Flexbox, Glassmorphism
 - **Icons**: Material Icons
 - **Typography**: Inter font family
 - **Templates**: EJS (Embedded JavaScript Templates)
+- **Environment**: dotenv for API key management
 
-## 🎨 Design Features
+## 🎨 Wizard Design Features
 
+- **Floating Wizard Emoji**: Animated wizard at the top with magical float effect
+- **Sparkle Animations**: Glowing sparkles on images with rotation and pulse
+- **Crystal Ball**: Floating crystal ball emoji on knowledge card images
 - **Glassmorphism**: Modern glass-like effects with backdrop blur
-- **Gradient Backgrounds**: Dynamic color gradients throughout the interface
-- **Floating Elements**: Animated floating cards and background elements
-- **Smooth Animations**: CSS transitions and JavaScript-powered animations
-- **Responsive Navigation**: Mobile-friendly navigation with hamburger menu
-- **Interactive Buttons**: Ripple effects and hover animations
-- **Modern Typography**: Clean, readable fonts with proper hierarchy
+- **Purple Gradient Theme**: Mystical purple-to-blue gradients throughout
+- **Rotating Wand Icon**: Continuously rotating magic wand in knowledge card
+- **Search Box Glow**: Glowing border effect when focused
+- **Smooth Animations**: Fade-in, slide-in, and stagger animations for results
 
 ## 📁 Project Structure
 
 ```
 /
-├── server.js              # Express server setup
-├── package.json           # Dependencies and scripts
+├── server.js              # Express server with Google Search API endpoint
+├── package.json           # Dependencies (express, axios, dotenv, ejs)
+├── .env                   # Google API credentials (API_KEY, CX)
 ├── views/
-│   └── index.ejs         # Main HTML template
+│   └── index.ejs         # Wizard search interface
 └── public/
     ├── css/
-    │   └── style.css     # Modern 2025 styling
-    └── js/
-        └── app.js        # Interactive JavaScript
+    │   └── style.css     # Wizard theme styling with animations
+    ├── js/
+    │   └── app.js        # Search logic and knowledge card builder
+    └── favicon.svg       # App icon
 ```
 
 ## 🚀 Getting Started
@@ -51,12 +57,14 @@ A cutting-edge Node.js web application featuring Material Design and a futuristi
 
 - Node.js (v14 or higher)
 - npm (Node Package Manager)
+- Google Custom Search API Key and Search Engine ID (CX)
 
 ### Installation
 
-1. **Clone or navigate to the project directory**
+1. **Clone the repository**
    ```bash
-   cd /Users/michael.wiley/github/OneStack-Deploy
+   git clone https://github.com/wileyadvanced/onestack_demo.git
+   cd onestack_demo
    ```
 
 2. **Install dependencies**
@@ -64,13 +72,20 @@ A cutting-edge Node.js web application featuring Material Design and a futuristi
    npm install
    ```
 
-3. **Start the development server**
+3. **Configure API Keys** (Already included in .env)
+   The `.env` file contains:
+   ```
+   GOOGLE_API_KEY=your_api_key_here
+   GOOGLE_CX=your_search_engine_id_here
+   ```
+
+4. **Start the server**
    ```bash
    npm start
    ```
 
-4. **Open your browser**
-   Navigate to `http://localhost:3000` to view the application
+5. **Open your browser**
+   Navigate to `http://localhost:3000` to cast your first search spell!
 
 ## 🎯 Available Scripts
 
@@ -79,78 +94,107 @@ A cutting-edge Node.js web application featuring Material Design and a futuristi
 
 ## 🌟 Key Components
 
-### Navigation Bar
-- Fixed header with glassmorphism effect
-- Responsive mobile navigation
-- Smooth scroll navigation links
+### Wizard Search Interface
+- **Floating Wizard**: 8rem animated wizard emoji with glow effect
+- **Search Bar**: Glassmorphic search box with magic wand button
+- **Search Icon**: Material Icons search and auto_awesome
+- **Background**: Floating purple gradient orbs
 
-### Hero Section
-- Large, impactful title with typing animation
-- Call-to-action buttons with ripple effects
-- Floating analytics card
-- Animated background elements
+### Search Results
+- **Left Panel**: Google search results with image thumbnails
+- **Sparkle Effects**: Animated sparkles on result images
+- **Stagger Animation**: Results fade in sequentially
+- **URL Display**: With sparkle emoji prefix
 
-### Features Section
-- Grid layout with feature cards
-- Hover animations and effects
-- Material Design icons
+### Wizard's Knowledge Card (Right Panel)
+- **Smart Detection**: Only shows for business/organization results
+- **Rotating Wand**: Animated magic wand icon in header
+- **Crystal Ball**: Floating crystal ball on images
+- **Contact Info**: Phone, address, and ratings when available
+- **Visit Button**: Gradient purple button with hover lift
+- **Sticky Position**: Follows scroll on desktop
 
 ### About Section
-- Two-column layout with code preview
-- Statistics display
-- Responsive design
+- **Wizard Stats**: Infinity spells cast, wizards count
+- **Code Window**: Themed code snippet with wizard magic
+- **Responsive Grid**: Adapts to screen size
 
-### Footer
-- Multi-column link layout
-- Social media integration
-- Modern styling
+## 🎨 Wizard Color Scheme
 
-## 🎨 Color Scheme
-
-- **Primary Gradient**: Purple to blue (`#667eea` to `#764ba2`)
-- **Secondary Gradient**: Pink to red (`#f093fb` to `#f5576c`)
-- **Accent Gradient**: Blue to cyan (`#4facfe` to `#00f2fe`)
-- **Background**: Dark gradient (`#0c0c0c` to `#16213e`)
-- **Glass Effects**: Semi-transparent white with blur
+- **Primary Gradient**: Mystical purple (`#667eea` to `#764ba2`)
+- **Accent Gradient**: Magical cyan (`#4facfe` to `#00f2fe`)
+- **Background**: Dark mystical gradient (`#0c0c0c` to `#16213e`)
+- **Link Blue**: `#8ab4f8` (Google-style blue)
+- **Text Colors**: White with varying opacity for hierarchy
+- **Borders**: Purple glow `rgba(102, 126, 234, 0.3)`
+- **Glass Effects**: Semi-transparent with 20px backdrop blur
 
 ## 📱 Responsive Design
 
-The application is fully responsive and optimized for:
-- **Desktop**: Full-width layouts with side-by-side content
-- **Tablet**: Adjusted spacing and stacked layouts
-- **Mobile**: Single-column layout with mobile navigation
+The wizard search is fully responsive:
+- **Desktop (>768px)**: Two-column layout with Knowledge Card on right
+- **Tablet**: Single column with Knowledge Card on top
+- **Mobile (<480px)**: Optimized wizard size, search box, and results
+- **Auto-Centering**: Results center when no Knowledge Card present
 
-## 🔧 Customization
+## 🔧 How It Works
 
-### Adding New Sections
-1. Add HTML structure to `views/index.ejs`
-2. Add corresponding styles to `public/css/style.css`
-3. Add JavaScript interactions to `public/js/app.js`
+### Search Flow
+1. User enters query and clicks magic wand button
+2. Frontend calls `/api/search?q=query` endpoint
+3. Server makes request to Google Custom Search API
+4. Results are parsed and displayed with animations
+5. First result analyzed for business data
+6. If business data found, Wizard's Knowledge Card appears
 
-### Modifying Colors
-Update the CSS custom properties in `:root` selector in `style.css`:
+### API Endpoints
+- `GET /` - Main wizard search interface
+- `GET /api/search?q=query` - Proxy to Google Custom Search
+- `GET /favicon.ico` - Redirects to SVG favicon
+
+### Knowledge Card Logic
+The card only appears when:
+- First result has a high-quality image AND
+- Contains business data (organization, local business, or place schema)
+- Shows: name, description, phone, address, rating
+
+### Customization
+
+**Change Wizard Emoji**: Edit line 50 in `views/index.ejs`
+```html
+<span class="wizard-emoji">🧙‍♂️</span>
+```
+
+**Adjust Colors**: Modify CSS variables in `public/css/style.css`
 ```css
 :root {
-    --primary: linear-gradient(135deg, #your-color-1, #your-color-2);
-    --secondary: linear-gradient(135deg, #your-color-1, #your-color-2);
-    /* ... */
+    --primary: linear-gradient(135deg, #667eea, #764ba2);
+    --accent: linear-gradient(135deg, #4facfe, #00f2fe);
 }
 ```
 
-### Adding New Animations
-Add new keyframe animations in `style.css` and reference them in JavaScript.
+## 🎯 Search Features
 
-## 🤝 Contributing
+- **Real-time Results**: Powered by Google Custom Search Engine
+- **Image Thumbnails**: Displays page images when available
+- **Sparkle Effects**: Magical animations on hover
+- **Loading States**: "Casting search spell..." with spinner
+- **Error Handling**: "The spell fizzled!" on failures
+- **Empty States**: Friendly "No magical results" message
+- **Fast Performance**: Lazy image loading and optimized animations
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## 🧙‍♂️ Wizard Easter Eggs
+
+- Wizard emoji floats continuously
+- Search button wand rotates on hover
+- Sparkles pulse and rotate on images
+- Crystal ball floats over Knowledge Card image
+- Results header: "The wizard conjured X results in Y seconds"
+- Auto-center layout when no business data
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🌐 Browser Support
 
@@ -159,10 +203,25 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Safari (latest)
 - Edge (latest)
 
+## 🚀 Deployment
+
+This app is ready for deployment with `.env` file included:
+
+```bash
+# On your server
+git clone https://github.com/wileyadvanced/onestack_demo.git
+cd onestack_demo
+npm install
+npm start
+```
+
+The server runs on port 3000 by default (configurable via `PORT` environment variable).
+
 ## 📞 Support
 
-For questions or support, please contact the development team or create an issue in the repository.
+For questions or support, create an issue in the repository.
 
 ---
 
-**Built with ❤️ for the future of web design**
+**🧙‍♂️ Built with magical code and wizard spells**
+*Generated with [Claude Code](https://claude.com/claude-code)*
