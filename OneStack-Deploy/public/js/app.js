@@ -375,6 +375,13 @@ class NexusApp {
             return;
         }
 
+        // Check if AI Agent mode is enabled
+        const agentModeToggle = document.getElementById('agentModeToggle');
+        if (agentModeToggle && agentModeToggle.checked) {
+            this.performAgentSearch(query);
+            return;
+        }
+
         // Show loading state
         searchButton.querySelector('.material-icons').textContent = 'hourglass_empty';
         searchButton.disabled = true;
@@ -474,6 +481,121 @@ class NexusApp {
                 sparkle.remove();
             }, 4000);
         }
+    }
+
+    async performAgentSearch(query) {
+        const resultsDiv = document.getElementById('searchResults');
+        const resultsContent = document.getElementById('resultsContent');
+        const searchButton = document.querySelector('.search-button');
+
+        // Show wizard thinking animation
+        searchButton.querySelector('.material-icons').textContent = 'hourglass_empty';
+        searchButton.disabled = true;
+
+        resultsDiv.style.display = 'block';
+        resultsContent.innerHTML = `
+            <div class="agent-search-container">
+                <div class="wizard-thinking">
+                    <div class="wizard-thinking-emoji">🧙‍♂️💭</div>
+                    <div class="wizard-thinking-text">The wizard is analyzing your query...</div>
+                </div>
+                <div id="agentSteps" class="agent-steps"></div>
+            </div>
+        `;
+
+        try {
+            const response = await fetch('/api/agent-search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                throw new Error(data.error);
+            }
+
+            this.displayAgentResults(data);
+
+        } catch (error) {
+            resultsContent.innerHTML = `
+                <div class="error-message">
+                    <span class="material-icons">error_outline</span>
+                    <p>The wizard's spell fizzled! ${error.message}</p>
+                </div>
+            `;
+        } finally {
+            searchButton.querySelector('.material-icons').textContent = 'auto_awesome';
+            searchButton.disabled = false;
+        }
+    }
+
+    displayAgentResults(data) {
+        const resultsContent = document.getElementById('resultsContent');
+
+        // Build the agent search steps HTML
+        let stepsHTML = `
+            <div class="agent-analysis">
+                <div class="agent-step">
+                    <div class="agent-step-icon"><span class="material-icons">psychology</span></div>
+                    <div class="agent-step-content">
+                        <h3>Analysis</h3>
+                        <p>${data.analysis}</p>
+                        <p class="agent-reasoning"><em>${data.reasoning}</em></p>
+                    </div>
+                </div>
+        `;
+
+        // Add each refined search
+        data.searches.forEach((search, index) => {
+            stepsHTML += `
+                <div class="agent-step">
+                    <div class="agent-step-icon"><span class="material-icons">search</span></div>
+                    <div class="agent-step-content">
+                        <h3>Search ${index + 1}: "${search.query}"</h3>
+                        <div class="agent-step-results">
+            `;
+
+            if (search.results && search.results.length > 0) {
+                search.results.forEach(result => {
+                    const thumbnail = result.pagemap?.cse_thumbnail?.[0]?.src || '';
+                    stepsHTML += `
+                        <div class="agent-result-item">
+                            ${thumbnail ? `<img src="${thumbnail}" alt="thumbnail" class="agent-result-thumb">` : ''}
+                            <div class="agent-result-info">
+                                <a href="${result.link}" target="_blank" class="agent-result-title">${result.title}</a>
+                                <p class="agent-result-snippet">${result.snippet}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                stepsHTML += '<p class="no-results-text">No results found for this query</p>';
+            }
+
+            stepsHTML += `
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Add final summary
+        stepsHTML += `
+            <div class="agent-step agent-summary">
+                <div class="agent-step-icon"><span class="material-icons">auto_awesome</span></div>
+                <div class="agent-step-content">
+                    <h3>Wizard's Insight</h3>
+                    <p>${data.summary}</p>
+                </div>
+            </div>
+        </div>
+        `;
+
+        resultsContent.innerHTML = stepsHTML;
     }
 
     displayResults(data) {
