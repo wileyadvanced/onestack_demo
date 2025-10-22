@@ -368,6 +368,13 @@ class NexusApp {
         const resultsContent = document.getElementById('resultsContent');
         const searchButton = document.querySelector('.search-button');
 
+        // Easter egg: Check for magic words
+        const lowerQuery = query.toLowerCase();
+        if (lowerQuery === 'wizard' || lowerQuery === 'magic' || lowerQuery === 'abracadabra') {
+            this.triggerWizardEasterEgg();
+            return;
+        }
+
         // Show loading state
         searchButton.querySelector('.material-icons').textContent = 'hourglass_empty';
         searchButton.disabled = true;
@@ -395,6 +402,77 @@ class NexusApp {
             // Reset button state
             searchButton.querySelector('.material-icons').textContent = 'auto_awesome';
             searchButton.disabled = false;
+        }
+    }
+
+    triggerWizardEasterEgg() {
+        const resultsDiv = document.getElementById('searchResults');
+        const resultsContent = document.getElementById('resultsContent');
+        const wizardEmoji = document.querySelector('.wizard-emoji');
+        const searchInput = document.getElementById('searchInput');
+
+        // Show results area
+        resultsDiv.style.display = 'block';
+
+        // Create magical message
+        resultsContent.innerHTML = `
+            <div class="easter-egg-container">
+                <div class="easter-egg-wizard">🧙‍♂️✨</div>
+                <h2 class="easter-egg-title">You've discovered the secret!</h2>
+                <p class="easter-egg-message">
+                    The ancient wizard reveals: This search engine was conjured from code to cloud in mere moments,
+                    powered by OneStack's magical deployment abilities!
+                </p>
+                <div class="easter-egg-stats">
+                    <div class="easter-egg-stat">
+                        <span class="material-icons">bolt</span>
+                        <span>Lightning Fast Deploy</span>
+                    </div>
+                    <div class="easter-egg-stat">
+                        <span class="material-icons">code</span>
+                        <span>Code to Platform</span>
+                    </div>
+                    <div class="easter-egg-stat">
+                        <span class="material-icons">rocket_launch</span>
+                        <span>Instant Push</span>
+                    </div>
+                </div>
+                <p class="easter-egg-footer">✨ The power of modern deployment magic ✨</p>
+            </div>
+        `;
+
+        // Animate the wizard emoji
+        wizardEmoji.style.animation = 'none';
+        setTimeout(() => {
+            wizardEmoji.style.animation = 'spin 1s ease-in-out, float 3s ease-in-out infinite';
+        }, 10);
+
+        // Create floating sparkles
+        this.createSparkles();
+
+        // Clear the search input after a moment
+        setTimeout(() => {
+            searchInput.value = '';
+        }, 500);
+    }
+
+    createSparkles() {
+        const hero = document.querySelector('.hero');
+        const sparkleEmojis = ['✨', '⭐', '💫', '🌟'];
+
+        for (let i = 0; i < 20; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'magic-sparkle';
+            sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            sparkle.style.animationDuration = (2 + Math.random() * 2) + 's';
+            hero.appendChild(sparkle);
+
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 4000);
         }
     }
 

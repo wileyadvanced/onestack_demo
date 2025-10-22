@@ -1227,6 +1227,110 @@ body {
     margin: 0;
 }
 
+/* Easter Egg Styles */
+.easter-egg-container {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(102, 126, 234, 0.4);
+    border-radius: var(--border-radius);
+    animation: fadeInUp 0.6s ease, pulse 2s ease-in-out infinite;
+}
+
+.easter-egg-wizard {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+.easter-egg-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.easter-egg-message {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.easter-egg-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.easter-egg-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    min-width: 150px;
+    transition: var(--transition);
+}
+
+.easter-egg-stat:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-5px);
+}
+
+.easter-egg-stat .material-icons {
+    font-size: 2.5rem;
+    color: #667eea;
+}
+
+.easter-egg-stat span:last-child {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.easter-egg-footer {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0;
+}
+
+.magic-sparkle {
+    position: absolute;
+    font-size: 2rem;
+    pointer-events: none;
+    animation: sparkleFloat 3s ease-out forwards;
+    z-index: 1000;
+}
+
+@keyframes sparkleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(0);
+    }
+    20% {
+        opacity: 1;
+        transform: translateY(-20px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(0.5) rotate(360deg);
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
