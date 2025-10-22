@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // Initialize Gemini AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 // Analytics Storage (in-memory - resets on server restart)
 let analytics = {
