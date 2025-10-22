@@ -1453,6 +1453,7 @@ body {
 
 .agent-step-content {
     flex: 1;
+    text-align: left;
 }
 
 .agent-step-content h3 {
@@ -1461,6 +1462,7 @@ body {
     margin-bottom: 1rem;
     font-weight: 700;
     line-height: 1.4;
+    text-align: left;
 }
 
 .agent-step-content p {
@@ -1468,6 +1470,7 @@ body {
     line-height: 1.7;
     margin-bottom: 0.75rem;
     font-size: 1rem;
+    text-align: left;
 }
 
 .agent-reasoning {
