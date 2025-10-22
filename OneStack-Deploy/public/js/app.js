@@ -539,14 +539,22 @@ class NexusApp {
         const closeBtn = document.getElementById('analyticsClose');
         const analyticsCard = document.getElementById('analyticsCard');
 
+        console.log('Analytics toggle init:', { toggleBtn, closeBtn, analyticsCard });
+
         if (toggleBtn && analyticsCard) {
-            toggleBtn.addEventListener('click', () => {
+            toggleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Toggle button clicked');
                 analyticsCard.classList.toggle('hidden');
             });
         }
 
         if (closeBtn && analyticsCard) {
-            closeBtn.addEventListener('click', () => {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Close button clicked');
                 analyticsCard.classList.add('hidden');
             });
         }
