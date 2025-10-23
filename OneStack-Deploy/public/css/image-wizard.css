@@ -303,3 +303,178 @@
         font-size: 1rem;
     }
 }
+
+/* Wizard Speech Bubble */
+.wizard-speech-bubble {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(25, 25, 50, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border: 3px solid rgba(102, 126, 234, 0.6);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    z-index: 10001;
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.5),
+                0 0 100px rgba(118, 75, 162, 0.3),
+                inset 0 0 50px rgba(102, 126, 234, 0.1);
+    animation: wizardAppear 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: opacity 0.3s ease;
+}
+
+.wizard-speech-bubble.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes wizardAppear {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+}
+
+.wizard-speech-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.wizard-avatar {
+    font-size: 3rem;
+    animation: wizardFloat 3s ease-in-out infinite;
+}
+
+@keyframes wizardFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+.wizard-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.wizard-greeting {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.wizard-prompt-intro {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem 0;
+}
+
+.wizard-prompt-text {
+    background: rgba(102, 126, 234, 0.1);
+    border-left: 4px solid rgba(102, 126, 234, 0.8);
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    position: relative;
+}
+
+.wizard-prompt-text::before {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    font-size: 1.5rem;
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.wizard-prompt-text::after {
+    content: '✨';
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    animation: sparkle 1.5s ease-in-out infinite 0.75s;
+}
+
+.use-prompt-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.use-prompt-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+}
+
+.use-prompt-button .material-icons {
+    font-size: 1.5rem;
+}
+
+/* Mobile Responsive for Speech Bubble */
+@media (max-width: 768px) {
+    .wizard-speech-bubble {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .wizard-avatar {
+        font-size: 2.5rem;
+    }
+
+    .wizard-name {
+        font-size: 1.25rem;
+    }
+
+    .wizard-greeting {
+        font-size: 1.125rem;
+    }
+
+    .wizard-prompt-intro {
+        font-size: 1rem;
+    }
+
+    .wizard-prompt-text {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .use-prompt-button {
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+    }
+}
