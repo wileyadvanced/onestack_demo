@@ -23,6 +23,27 @@
     font-size: 1.5rem;
 }
 
+/* Prompt Wizard Button */
+.prompt-wizard-button {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(240, 147, 251, 0.3);
+    font-size: 1.5rem;
+}
+
+.prompt-wizard-button:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 6px 16px rgba(240, 147, 251, 0.5);
+}
+
 /* Image Modal */
 .image-modal {
     position: fixed;

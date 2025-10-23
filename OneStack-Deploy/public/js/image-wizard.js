@@ -106,6 +106,20 @@ document.addEventListener('DOMContentLoaded', () => {
         wizardEmoji.title = 'Double-click for a prompt suggestion!';
     }
 
+    // Add click handler to prompt wizard button in search bar
+    const promptWizardButton = document.getElementById('promptWizardButton');
+    if (promptWizardButton) {
+        promptWizardButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // Open the image modal first, then show wizard speech
+            imageModal.classList.remove('hidden');
+            setTimeout(() => {
+                showWizardSpeech();
+            }, 300);
+        });
+    }
+
     // Generate images
     if (generateButton) {
         generateButton.addEventListener('click', async () => {
