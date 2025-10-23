@@ -631,7 +631,9 @@ class NexusApp {
                     <div class="result-content">
                         ${imageUrl ? `
                             <div class="result-image-wrapper">
-                                <img src="${imageUrl}" alt="${item.title}" class="result-image" loading="lazy" onerror="this.parentElement.style.display='none'">
+                                <img src="${imageUrl}" alt="${item.title}" class="result-image" loading="lazy"
+                                     onerror="console.log('Image failed to load:', '${imageUrl}'); this.parentElement.style.display='none';"
+                                     onload="console.log('Image loaded successfully:', '${imageUrl}');">
                             </div>
                         ` : ''}
                         <div class="result-text">
