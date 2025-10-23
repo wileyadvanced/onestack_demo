@@ -204,7 +204,7 @@ app.post('/api/generate-image', async (req, res) => {
     }
 
     const response = await imageAI.models.generateImages({
-      model: 'imagen-3.0-generate-001',
+      model: 'imagen-4.0-generate-001',
       prompt: prompt,
       config: {
         numberOfImages: 4,
