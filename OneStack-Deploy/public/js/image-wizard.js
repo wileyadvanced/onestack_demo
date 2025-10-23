@@ -55,16 +55,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const data = await response.json();
 
-                if (data.error) {
-                    throw new Error(data.error);
+                // Check for HTTP error status
+                if (!response.ok) {
+                    console.error('Image generation failed:', response.status, data);
+                    throw new Error(data.error || data.details || `Failed to generate images (${response.status})`);
                 }
+
+                if (data.error) {
+                    console.error('Image generation error:', data);
+                    throw new Error(data.error + (data.details ? `: ${data.details}` : ''));
+                }
+
+                // Check if we got images
+                if (!data.images || data.images.length === 0) {
+                    console.error('No images returned:', data);
+                    throw new Error('No images were generated. Try a different prompt.');
+                }
+
+                console.log('Successfully generated images:', data.images.length);
 
                 // Display images
                 let imagesHTML = '<div class="generated-images-grid">';
                 data.images.forEach((img, index) => {
                     imagesHTML += `
                         <div class="generated-image-card">
-                            <img src="${img.imageData}" alt="Generated image ${index + 1}" class="generated-image">
+                            <img src="${img.imageData}" alt="Generated image ${index + 1}" class="generated-image"
+                                 onerror="this.parentElement.innerHTML='<div class=\\'image-load-error\\'>Image ${index + 1} failed to load</div>'">
                             <a href="${img.imageData}" download="wizard-image-${index + 1}.png" class="download-button">
                                 <span class="material-icons">download</span>
                                 Download
@@ -76,10 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 imageResults.innerHTML = imagesHTML;
 
             } catch (error) {
+                console.error('Image wizard error:', error);
                 imageResults.innerHTML = `
                     <div class="error-message">
                         <span class="material-icons">error_outline</span>
-                        <p>The wizard's spell fizzled! ${error.message}</p>
+                        <h3>Oops! The Wizard's Spell Fizzled</h3>
+                        <p>${error.message}</p>
+                        <p class="error-hint">Try a different prompt or check the console for more details.</p>
                     </div>
                 `;
             } finally {
