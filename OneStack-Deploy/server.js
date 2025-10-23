@@ -3,12 +3,16 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Initialize Gemini AI
+// Initialize Gemini AI for text
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+
+// Initialize Google GenAI for images
+const imageAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // Analytics Storage (in-memory - resets on server restart)
 let analytics = {
@@ -186,6 +190,44 @@ Provide your response in a friendly, wizard-themed tone.`;
     console.error('AI Agent error:', error);
     res.status(500).json({
       error: 'The wizard encountered a problem',
+      details: error.message
+    });
+  }
+});
+
+// Image Generation endpoint
+app.post('/api/generate-image', async (req, res) => {
+  try {
+    const { prompt } = req.body;
+    if (!prompt) {
+      return res.status(400).json({ error: 'Prompt is required' });
+    }
+
+    const response = await imageAI.models.generateImages({
+      model: 'imagen-3.0-generate-001',
+      prompt: prompt,
+      config: {
+        numberOfImages: 4,
+      },
+    });
+
+    // Convert images to base64 strings
+    const images = response.generatedImages.map((img) => {
+      return {
+        imageData: `data:image/png;base64,${img.image.imageBytes}`,
+        mimeType: img.image.mimeType
+      };
+    });
+
+    res.json({
+      prompt: prompt,
+      images: images
+    });
+
+  } catch (error) {
+    console.error('Image generation error:', error);
+    res.status(500).json({
+      error: 'The wizard failed to conjure images',
       details: error.message
     });
   }

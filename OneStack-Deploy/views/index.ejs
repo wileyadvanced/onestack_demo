@@ -21,6 +21,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/image-wizard.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -112,10 +113,41 @@
                             name="q"
                             autocomplete="off"
                         />
+                        <button type="button" class="image-wizard-button" id="imageWizardButton" title="Generate Images">
+                            <span class="material-icons">image</span>
+                        </button>
                         <button type="submit" class="search-button">
                             <span class="material-icons">auto_awesome</span>
                         </button>
                     </form>
+                </div>
+
+                <!-- Image Generation Modal -->
+                <div id="imageModal" class="image-modal hidden">
+                    <div class="image-modal-content">
+                        <div class="image-modal-header">
+                            <h2>🧙‍♂️ Wizard Image Generator</h2>
+                            <button type="button" class="image-modal-close" id="imageModalClose">
+                                <span class="material-icons">close</span>
+                            </button>
+                        </div>
+                        <div class="image-modal-body">
+                            <div class="image-prompt-section">
+                                <label for="imagePrompt">Describe what you want to generate:</label>
+                                <textarea
+                                    id="imagePrompt"
+                                    class="image-prompt-input"
+                                    placeholder="e.g., A wizard coding on a laptop surrounded by magical sparkles..."
+                                    rows="3"
+                                ></textarea>
+                                <button type="button" class="generate-button" id="generateButton">
+                                    <span class="material-icons">auto_awesome</span>
+                                    Generate Images
+                                </button>
+                            </div>
+                            <div id="imageResults" class="image-results"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Search Results Section -->
@@ -136,5 +168,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script src="/js/image-wizard.js"></script>
 </body>
 </html>
