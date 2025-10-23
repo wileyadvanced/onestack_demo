@@ -6,6 +6,7 @@ class NexusApp {
     }
 
     init() {
+        this.searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
         this.setupEventListeners();
         this.initScrollEffects();
         this.initAnimations();
@@ -14,6 +15,7 @@ class NexusApp {
         this.initSearch();
         this.initAnalytics();
         this.initAnalyticsToggle();
+        this.initSearchHistory();
     }
 
     setupEventListeners() {
@@ -358,9 +360,62 @@ class NexusApp {
 
                 if (!query) return;
 
+                this.addToHistory(query);
                 this.performSearch(query);
             });
         }
+
+        if (searchInput) {
+            searchInput.addEventListener('focus', () => {
+                this.showSearchHistory();
+            });
+            searchInput.addEventListener('blur', () => {
+                setTimeout(() => this.hideSearchHistory(), 200);
+            });
+        }
+    }
+
+    initSearchHistory() {
+        const searchBox = document.querySelector('.search-box-wrapper');
+        const historyDiv = document.createElement('div');
+        historyDiv.id = 'searchHistoryDropdown';
+        historyDiv.className = 'search-history-dropdown hidden';
+        searchBox.appendChild(historyDiv);
+    }
+
+    addToHistory(query) {
+        this.searchHistory = this.searchHistory.filter(q => q !== query);
+        this.searchHistory.unshift(query);
+        this.searchHistory = this.searchHistory.slice(0, 10);
+        localStorage.setItem('searchHistory', JSON.stringify(this.searchHistory));
+    }
+
+    showSearchHistory() {
+        if (this.searchHistory.length === 0) return;
+
+        const dropdown = document.getElementById('searchHistoryDropdown');
+        dropdown.innerHTML = this.searchHistory.map(query => `
+            <div class="history-item" data-query="${query}">
+                <span class="material-icons">history</span>
+                <span class="history-text">${query}</span>
+            </div>
+        `).join('');
+
+        dropdown.querySelectorAll('.history-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const query = item.dataset.query;
+                document.getElementById('searchInput').value = query;
+                this.performSearch(query);
+                this.hideSearchHistory();
+            });
+        });
+
+        dropdown.classList.remove('hidden');
+    }
+
+    hideSearchHistory() {
+        const dropdown = document.getElementById('searchHistoryDropdown');
+        dropdown.classList.add('hidden');
     }
 
     async performSearch(query) {

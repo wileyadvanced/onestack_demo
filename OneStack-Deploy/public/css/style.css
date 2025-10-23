@@ -375,6 +375,7 @@ body {
 .search-box-wrapper {
     max-width: 700px;
     margin: 0 auto;
+    position: relative;
 }
 
 .search-box {
@@ -438,6 +439,53 @@ body {
 .search-button .material-icons {
     color: white;
     font-size: 1.5rem;
+}
+
+.search-history-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(102, 126, 234, 0.4);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    animation: fadeInUp 0.3s ease;
+}
+
+.search-history-dropdown.hidden {
+    display: none;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-item:hover {
+    background: rgba(102, 126, 234, 0.2);
+}
+
+.history-item .material-icons {
+    color: #667eea;
+    font-size: 1.25rem;
+}
+
+.history-text {
+    color: var(--text-secondary);
+    flex: 1;
 }
 
 .hero-title {
