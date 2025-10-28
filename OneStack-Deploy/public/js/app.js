@@ -368,10 +368,10 @@ class NexusApp {
         const resultsContent = document.getElementById('resultsContent');
         const searchButton = document.querySelector('.search-button');
 
-        // Easter egg: Check for magic words
+        // Easter egg: Check for Halloween words
         const lowerQuery = query.toLowerCase();
-        if (lowerQuery === 'wizard' || lowerQuery === 'magic' || lowerQuery === 'abracadabra') {
-            this.triggerWizardEasterEgg();
+        if (lowerQuery === 'pumpkin' || lowerQuery === 'halloween' || lowerQuery === 'spooky') {
+            this.triggerPumpkinEasterEgg();
             return;
         }
 
@@ -387,7 +387,7 @@ class NexusApp {
         searchButton.disabled = true;
 
         resultsDiv.style.display = 'block';
-        resultsContent.innerHTML = '<div class="loading-spinner"><span class="material-icons">autorenew</span> Casting search spell...</div>';
+        resultsContent.innerHTML = '<div class="loading-spinner"><span class="material-icons">autorenew</span> Searching the pumpkin patch...</div>';
 
         try {
             const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
@@ -402,7 +402,7 @@ class NexusApp {
             resultsContent.innerHTML = `
                 <div class="error-message">
                     <span class="material-icons">error_outline</span>
-                    <p>The spell fizzled! ${error.message}</p>
+                    <p>Search failed! ${error.message}</p>
                 </div>
             `;
         } finally {
@@ -412,23 +412,23 @@ class NexusApp {
         }
     }
 
-    triggerWizardEasterEgg() {
+    triggerPumpkinEasterEgg() {
         const resultsDiv = document.getElementById('searchResults');
         const resultsContent = document.getElementById('resultsContent');
-        const wizardEmoji = document.querySelector('.wizard-emoji');
+        const pumpkinEmoji = document.querySelector('.wizard-emoji');
         const searchInput = document.getElementById('searchInput');
 
         // Show results area
         resultsDiv.style.display = 'block';
 
-        // Create magical message
+        // Create spooky message
         resultsContent.innerHTML = `
             <div class="easter-egg-container">
-                <div class="easter-egg-wizard">🧙‍♂️✨</div>
+                <div class="easter-egg-wizard">🎃✨</div>
                 <h2 class="easter-egg-title">You've discovered the secret!</h2>
                 <p class="easter-egg-message">
-                    The ancient wizard reveals: This search engine was conjured from code to cloud in mere moments,
-                    powered by OneStack's magical deployment abilities!
+                    The great pumpkin reveals: This search engine was carved from code to cloud in mere moments,
+                    powered by OneStack's spooky deployment abilities!
                 </p>
                 <div class="easter-egg-stats">
                     <div class="easter-egg-stat">
@@ -444,14 +444,14 @@ class NexusApp {
                         <span>Instant Push</span>
                     </div>
                 </div>
-                <p class="easter-egg-footer">✨ The power of modern deployment magic ✨</p>
+                <p class="easter-egg-footer">🎃 The power of modern deployment 🎃</p>
             </div>
         `;
 
-        // Animate the wizard emoji
-        wizardEmoji.style.animation = 'none';
+        // Animate the pumpkin emoji
+        pumpkinEmoji.style.animation = 'none';
         setTimeout(() => {
-            wizardEmoji.style.animation = 'spin 1s ease-in-out, float 3s ease-in-out infinite';
+            pumpkinEmoji.style.animation = 'spin 1s ease-in-out, float 3s ease-in-out infinite';
         }, 10);
 
         // Create floating sparkles
@@ -496,8 +496,8 @@ class NexusApp {
         resultsContent.innerHTML = `
             <div class="agent-search-container">
                 <div class="wizard-thinking">
-                    <div class="wizard-thinking-emoji">🧙‍♂️💭</div>
-                    <div class="wizard-thinking-text">The wizard is analyzing your query...</div>
+                    <div class="wizard-thinking-emoji">🎃💭</div>
+                    <div class="wizard-thinking-text">The pumpkin is analyzing your query...</div>
                 </div>
                 <div id="agentSteps" class="agent-steps"></div>
             </div>
@@ -524,7 +524,7 @@ class NexusApp {
             resultsContent.innerHTML = `
                 <div class="error-message">
                     <span class="material-icons">error_outline</span>
-                    <p>The wizard's spell fizzled! ${error.message}</p>
+                    <p>The pumpkin search failed! ${error.message}</p>
                 </div>
             `;
         } finally {
@@ -588,7 +588,7 @@ class NexusApp {
             <div class="agent-step agent-summary">
                 <div class="agent-step-icon"><span class="material-icons">auto_awesome</span></div>
                 <div class="agent-step-content">
-                    <h3>Wizard's Insight</h3>
+                    <h3>Pumpkin's Insight</h3>
                     <p>${data.summary}</p>
                 </div>
             </div>
@@ -605,7 +605,7 @@ class NexusApp {
             resultsContent.innerHTML = `
                 <div class="no-results">
                     <span class="material-icons">search_off</span>
-                    <p>No magical results found. Try a different incantation!</p>
+                    <p>No spooky results found. Try a different search!</p>
                 </div>
             `;
             return;
@@ -655,7 +655,7 @@ class NexusApp {
                 <div class="results-main">
                     <div class="results-header">
                         <span class="material-icons">auto_awesome</span>
-                        <p>The wizard conjured ${data.searchInformation.formattedTotalResults} magical results in ${data.searchInformation.formattedSearchTime} seconds</p>
+                        <p>Found ${data.searchInformation.formattedTotalResults} results in ${data.searchInformation.formattedSearchTime} seconds</p>
                     </div>
                     ${resultsHTML}
                 </div>
@@ -816,7 +816,7 @@ class NexusApp {
             <div class="info-card">
                 <div class="info-card-header">
                     <span class="material-icons">auto_fix_high</span>
-                    <h3>Wizard's Knowledge</h3>
+                    <h3>Pumpkin Patch Knowledge</h3>
                 </div>
 
                 <div class="info-card-image">
