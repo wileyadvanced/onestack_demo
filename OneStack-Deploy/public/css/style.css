@@ -1104,7 +1104,7 @@ body {
 
 .result-title {
     color: #8ab4f8;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 400;
     text-decoration: none;
     transition: var(--transition);
@@ -1119,7 +1119,7 @@ body {
 
 .result-url {
     color: #9aa0a6;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     margin: 0.25rem 0 0.5rem 0;
     display: flex;
     align-items: center;
@@ -1135,7 +1135,7 @@ body {
     color: #bdc1c6;
     line-height: 1.58;
     margin: 0;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
 }
 
 /* Info Card - Right Side Panel */
