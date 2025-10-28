@@ -36,7 +36,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Routes
 app.get('/', (req, res) => {
   res.render('index', {
-    title: 'The Wizard Search - Magical Code Discovery',
+    title: 'The Pumpkin Search - Halloween Code Discovery',
     year: new Date().getFullYear()
   });
 });
